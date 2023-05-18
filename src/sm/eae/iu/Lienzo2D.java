@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package sm.eae.iu;
+import java.awt.AWTException;
 import java.awt.AlphaComposite;
 import java.awt.BasicStroke;
 import java.awt.Color;
@@ -13,6 +14,7 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
+import java.awt.Robot;
 import java.awt.Shape;
 import java.awt.Stroke;
 import java.awt.geom.Ellipse2D;
@@ -20,6 +22,8 @@ import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import sm.eae.graficos.Curva;
 import sm.eae.graficos.Elipse;
 import sm.eae.graficos.Linea;
@@ -295,6 +299,9 @@ public class Lienzo2D extends javax.swing.JPanel {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 formMouseDragged(evt);
             }
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                formMouseMoved(evt);
+            }
         });
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -440,6 +447,16 @@ public class Lienzo2D extends javax.swing.JPanel {
             ((Curva)forma).setDesplazamiento(((Curva)forma).getInicio());
                     
     }//GEN-LAST:event_formMouseReleased
+
+    private void formMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseMoved
+        Color rgb = null;
+        if (defaultImage) 
+            rgb = Color.WHITE;
+        else 
+            rgb = new Color(img.getRGB(evt.getX(), evt.getY()));
+     
+        notifyPropertyChangeEvent( new LienzoEvent(this,evt.getPoint(), rgb));
+    }//GEN-LAST:event_formMouseMoved
     
     public void addLienzoListener(LienzoListener listener) {
         if (listener != null) {
