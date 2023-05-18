@@ -108,11 +108,9 @@ public class Lienzo2D extends javax.swing.JPanel {
 //---- MÉTODOS PRIVADOS ----//
     
     private void drawLimites(Graphics2D g2d) {
-        
         Shape clipArea;
         clipArea = new Rectangulo.Float(0, 0, img.getWidth()+0.5f,img.getHeight()+0.5f);
         g2d.clip(clipArea);
-        g2d.draw(clipArea);
         
         Stroke trazo;
         float patronDiscontinuidad[] = {4.0f, 2.0f};
@@ -120,9 +118,10 @@ public class Lienzo2D extends javax.swing.JPanel {
                                 BasicStroke.CAP_ROUND,
                                 BasicStroke.JOIN_MITER, 1.0f,
                                 patronDiscontinuidad, 0.0f);
-         g2d.setStroke(trazo);
-         g2d.setPaint(Color.black);
-         g2d.draw(new Rectangulo(-1, -1, img.getWidth()+1.0f,img.getHeight()+1.0f));
+        g2d.setStroke(trazo);
+        g2d.setPaint(Color.black);
+        g2d.draw(new Rectangulo(-1, -1, img.getWidth()+1.0f,img.getHeight()+1.0f));
+
     }
     
     private void renderizar(Graphics2D g2d) {
