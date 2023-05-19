@@ -450,11 +450,11 @@ public class Lienzo2D extends javax.swing.JPanel {
 
     private void formMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseMoved
         Color rgb = null;
-        if (defaultImage) 
-            rgb = Color.WHITE;
-        else 
+        rgb = Color.WHITE;
+        
+        if (img != null && evt.getX() < img.getWidth() && evt.getY() < img.getHeight())
             rgb = new Color(img.getRGB(evt.getX(), evt.getY()));
-     
+        
         notifyPropertyChangeEvent( new LienzoEvent(this,evt.getPoint(), rgb));
     }//GEN-LAST:event_formMouseMoved
     
